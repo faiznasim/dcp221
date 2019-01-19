@@ -2,27 +2,28 @@
 
 $stdin = fopen('php://stdin', 'r');
 $stdout = fopen('php://stdout', 'w');
-//$line = trim(fgets(STDIN)); // reads one line from STDIN
-fscanf(STDIN, "%d\n", $testcase); // reads number from STDIN
+
+fscanf(STDIN, "%d\n", $testcase);
 for($i = 1; $i <= $testcase; $i++)
 {
    $line = fgets(STDIN);
    $arr = explode(" ", $line);
    $size = sizeof($arr);
-   $min  = $arr[0];
-   $max = $arr[0];
+
+   $max = (int)$arr[0];
    for ($j = 1; $j < $size; $j++)
    {
-        if ($arr[$j] < $min)
+        if ((int)$arr[$j] > $max)
         {
-            $min = $arr[$j];
+            $max = (int)$arr[$j];
         }
    }
+   $min  = (int)$arr[0];
    for ($j = 1; $j < $size; $j++)
    {
-        if ($arr[$j] > $max)
+        if ((int)$arr[$j] < $min)
         {
-            $max = $arr[$j];
+            $min = (int)$arr[$j];
         }
    }
     fprintf(STDOUT, "Case %d: Among %d numbers %d is maximum and %d is minimum\n", $i, $size, $max, $min);
